@@ -126,6 +126,64 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     hydrateSelectedProjectThumbnails();
+
+    function initLightbox() {
+        const root = document.createElement("div");
+        root.className = "lightbox";
+        root.setAttribute("role", "dialog");
+        root.setAttribute("aria-modal", "true");
+        root.setAttribute("aria-label", "Image preview");
+        root.hidden = true;
+
+        root.innerHTML = `
+          <button class="lightbox__close" type="button" aria-label="Close">×</button>
+          <div class="lightbox__backdrop" data-lightbox-backdrop></div>
+          <img class="lightbox__img" alt="" />
+        `;
+
+        document.body.appendChild(root);
+
+        const imgEl = root.querySelector(".lightbox__img");
+        const closeBtn = root.querySelector(".lightbox__close");
+        const backdrop = root.querySelector("[data-lightbox-backdrop]");
+
+        function open(src) {
+            if (!(imgEl instanceof HTMLImageElement)) return;
+            imgEl.src = src;
+            root.hidden = false;
+            document.documentElement.classList.add("is-lightbox-open");
+            closeBtn?.focus?.();
+        }
+
+        function close() {
+            if (!(imgEl instanceof HTMLImageElement)) return;
+            root.hidden = true;
+            imgEl.removeAttribute("src");
+            document.documentElement.classList.remove("is-lightbox-open");
+        }
+
+        closeBtn?.addEventListener("click", close);
+        backdrop?.addEventListener("click", close);
+        root.addEventListener("click", (e) => {
+            // safety: clicking around the image closes
+            if (e.target === root) close();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !root.hidden) close();
+        });
+
+        // Enable click-to-zoom for content images only
+        document.addEventListener("click", (e) => {
+            const img = e.target instanceof Element ? e.target.closest("main img") : null;
+            if (!(img instanceof HTMLImageElement)) return;
+            const src = img.currentSrc || img.src;
+            if (!src) return;
+            open(src);
+        });
+    }
+
+    initLightbox();
 });
 
 (() => {

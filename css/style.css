@@ -41,6 +41,11 @@ html {
   color-scheme: light;
 }
 
+html.is-lightbox-open,
+html.is-lightbox-open body {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body-en);
@@ -95,6 +100,60 @@ a {
 a:hover,
 a:focus-visible {
   text-decoration: underline;
+}
+
+/* Lightbox */
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.lightbox__img {
+  position: relative;
+  z-index: 1;
+  max-width: min(1200px, calc(100vw - 48px));
+  max-height: calc(100vh - 48px);
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox__close:hover,
+.lightbox__close:focus-visible {
+  background: rgba(0, 0, 0, 0.55);
 }
 
 ::selection {
@@ -526,7 +585,7 @@ main > section:nth-of-type(4) {
 }
 
 .article__title {
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-5);
   font-family: var(--font-heading-en);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -551,6 +610,7 @@ main > section:nth-of-type(4) {
   border-radius: 12px;
   overflow: hidden;
   background: var(--color-bg);
+  margin: 0 0 var(--space-5);
 }
 
 .meta-table th,
