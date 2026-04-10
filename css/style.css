@@ -966,13 +966,22 @@ main > section:nth-of-type(4) {
   display: block;
 }
 
+#work-filter-content:target ~ .work-grid .project-card {
+  display: none;
+}
+#work-filter-content:target ~ .work-grid .project-card--content {
+  display: block;
+}
+
 /* Active filter pill styling */
 #work-filter-mobile:target ~ .work-filters .work-filters__link[href="#work-filter-mobile"],
 #work-filter-web:target ~ .work-filters .work-filters__link[href="#work-filter-web"],
 #work-filter-detail:target
   ~ .work-filters .work-filters__link[href="#work-filter-detail"],
 #work-filter-education:target
-  ~ .work-filters .work-filters__link[href="#work-filter-education"] {
+  ~ .work-filters .work-filters__link[href="#work-filter-education"],
+#work-filter-content:target
+  ~ .work-filters .work-filters__link[href="#work-filter-content"] {
   color: var(--color-text);
   background: rgba(26, 26, 26, 0.05);
   border-color: rgba(26, 26, 26, 0.25);
