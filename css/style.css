@@ -73,6 +73,10 @@ main img {
   cursor: zoom-in;
 }
 
+[data-hero-slider] img {
+  cursor: pointer;
+}
+
 input,
 button,
 textarea,
