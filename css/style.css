@@ -621,19 +621,19 @@ main > section:nth-of-type(4) {
   border-top: 1px solid var(--color-border);
   text-align: left;
   vertical-align: top;
+  color: var(--color-text);
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.6;
+  font-weight: 400;
 }
 
-.meta-table tr:first-child th,
-.meta-table tr:first-child td {
-  border-top: 0;
+.meta-table tr:last-child th,
+.meta-table tr:last-child td {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .meta-table th {
-  width: 28%;
-  color: var(--color-muted);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  width: 25%;
   background: rgba(26, 26, 26, 0.02);
   white-space: nowrap;
 }
