@@ -614,6 +614,10 @@ main > section:nth-of-type(4) {
   font-size: clamp(16px, 1.2vw, 18px);
 }
 
+.article__body + .article__cover {
+  margin-top: var(--space-7);
+}
+
 .meta-table {
   width: 100%;
   border-collapse: collapse;
